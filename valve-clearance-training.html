@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MX-13 Overhead Valve Clearance Adjustment — Certification</title>
+<style>
+  :root{
+    --navy:#0d2340; --navy-light:#173a63; --red:#c8202f; --amber:#e8a33d;
+    --bg:#f4f6f9; --card:#ffffff; --text:#1c2733; --muted:#5a6b7d; --border:#dce3ea;
+    --green:#1f8a4c; --sidebar-w:280px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);}
+  header{background:var(--navy);color:#fff;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+  header h1{font-size:1.15rem;margin:0;font-weight:600;}
+  header .sub{font-size:.8rem;color:#b9c6d6;margin-top:2px;}
+  .progress-pill{background:var(--navy-light);border-radius:20px;padding:6px 14px;font-size:.8rem;}
+  .layout{display:flex;max-width:1400px;margin:0 auto;}
+  nav.side{width:var(--sidebar-w);flex-shrink:0;padding:24px 14px;position:sticky;top:70px;align-self:flex-start;height:calc(100vh - 70px);overflow-y:auto;}
+  nav.side button{display:block;width:100%;text-align:left;background:none;border:none;padding:11px 14px;border-radius:8px;font-size:.9rem;color:var(--text);cursor:pointer;margin-bottom:4px;border-left:3px solid transparent;}
+  nav.side button.active{background:#fff;border-left:3px solid var(--red);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.06);}
+  nav.side button .num{display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--border);color:var(--muted);font-size:.72rem;text-align:center;line-height:22px;margin-right:8px;}
+  nav.side button.done .num{background:var(--green);color:#fff;}
+  nav.side button.active .num{background:var(--red);color:#fff;}
+  main{flex:1;padding:28px 32px 80px;min-width:0;}
+  .section{display:none;}
+  .section.active{display:block;animation:fade .3s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:26px 28px;margin-bottom:22px;}
+  h2.title{color:var(--navy);border-bottom:3px solid var(--red);padding-bottom:10px;margin-top:0;font-size:1.5rem;}
+  h3{color:var(--navy-light);font-size:1.1rem;margin-top:0;}
+  .warn{background:#fdeceb;border:1px solid #f3b7b7;border-left:5px solid var(--red);padding:14px 18px;border-radius:8px;margin:16px 0;}
+  .warn strong{color:var(--red);}
+  .info{background:#eaf1fb;border:1px solid #c3d7f0;border-left:5px solid var(--navy-light);padding:14px 18px;border-radius:8px;margin:16px 0;font-size:.92rem;}
+  .info ul{margin:6px 0 0 18px;padding:0;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem;}
+  th,td{border:1px solid var(--border);padding:9px 12px;text-align:left;}
+  th{background:var(--navy);color:#fff;font-weight:600;}
+  tr:nth-child(even) td{background:#f8fafc;}
+  .tocheck{background:#fff4de !important;font-weight:700;color:#8a5a00;}
+  ol,ul{line-height:1.65;}
+  .videoblock{margin:18px 0;}
+  .videoblock video{width:100%;max-width:720px;border-radius:10px;border:1px solid var(--border);display:block;background:#000;}
+  .video-caption{font-size:.85rem;color:var(--muted);margin-top:6px;font-style:italic;}
+  .video-label{display:inline-block;background:var(--navy);color:#fff;font-size:.72rem;padding:3px 10px;border-radius:20px;margin-bottom:8px;letter-spacing:.03em;text-transform:uppercase;}
+  .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+  .spec-box{background:var(--navy);color:#fff;border-radius:10px;padding:16px 18px;}
+  .spec-box .val{font-size:1.5rem;font-weight:700;color:var(--amber);}
+  .spec-box .lbl{font-size:.8rem;color:#c3d0e0;}
+  .nav-btns{display:flex;justify-content:space-between;margin-top:26px;}
+  button.nav{background:var(--navy);color:#fff;border:none;padding:11px 22px;border-radius:8px;font-size:.92rem;cursor:pointer;}
+  button.nav:hover{background:var(--navy-light);}
+  button.nav:disabled{opacity:.35;cursor:not-allowed;}
+  /* Quiz */
+  .q-block{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+  .q-block:last-child{border-bottom:none;}
+  .q-prompt{font-weight:600;margin-bottom:10px;}
+  .opt{display:block;background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:8px;cursor:pointer;}
+  .opt:hover{border-color:var(--navy-light);}
+  .opt.selected{border-color:var(--navy);background:#eaf1fb;}
+  .opt.correct{border-color:var(--green);background:#e6f6ec;}
+  .opt.incorrect{border-color:var(--red);background:#fdeceb;}
+  .opt input{margin-right:8px;}
+  .result-banner{padding:18px 22px;border-radius:10px;margin-bottom:20px;font-weight:600;font-size:1.05rem;}
+  .result-banner.pass{background:#e6f6ec;color:var(--green);border:1px solid #b6e3c6;}
+  .result-banner.fail{background:#fdeceb;color:var(--red);border:1px solid #f3b7b7;}
+  .cert{border:6px double var(--navy);padding:40px;text-align:center;background:#fffdf7;border-radius:6px;}
+  .cert h2{color:var(--navy);font-size:1.8rem;margin-bottom:6px;}
+  .cert .name{font-size:1.4rem;color:var(--red);margin:18px 0;font-weight:700;border-bottom:2px solid var(--navy);display:inline-block;padding-bottom:6px;}
+  .locked{opacity:.5;pointer-events:none;}
+  @media(max-width:900px){.layout{flex-direction:column;}nav.side{position:relative;top:0;width:100%;height:auto;display:flex;overflow-x:auto;padding:12px;}nav.side button{white-space:nowrap;width:auto;}.spec-grid{grid-template-columns:1fr;}}
+  @media print{nav.side,header,.nav-btns{display:none;}.section{display:block !important;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>MX-13 Overhead Valve Clearance Adjustment</h1>
+    <div class="sub">Refresher &amp; Certification — Andrews Logistics LP</div>
+  </div>
+  <div class="progress-pill" id="progressPill">Section 1 of 7</div>
+</header>
+
+<div class="layout">
+  <nav class="side" id="sideNav"></nav>
+  <main>
+
+    <!-- 1. INTRO / SAFETY -->
+    <section class="section" data-idx="0">
+      <div class="card">
+        <h2 class="title">1. Safety &amp; Job Setup</h2>
+        <p>This module refreshes the DAF MX-13 overhead valve clearance check/adjust procedure. It's built for
+        techs who've already run this job — it's a certification refresher, not a first-time walkthrough.</p>
+
+        <div class="warn">
+          <strong>Before commencing any activity on the vehicle:</strong>
+          <ul>
+            <li>Always remove the ignition key and secure it in a safe location. This prevents unintentional starting of the vehicle and activation of electrical systems.</li>
+            <li>When working on a component with direct power supply (+30), always disconnect the 12V battery's ground connection per the applicable job procedure.</li>
+            <li>Dirt or debris entering the engine damages the engine or may cause engine failure — clean the entire engine or engine compartment where service will be performed.</li>
+          </ul>
+        </div>
+
+        <div class="videoblock">
+          <span class="video-label">Demonstration</span>
+          <video controls muted playsinline poster="" preload="metadata">
+            <source src="videos/shop_setup.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Job setup — tools staged, engine compartment accessed and cleaned before starting the procedure. (Audio removed — visual reference only.)</div>
+        </div>
+
+        <div class="info">
+          <strong>Required special tools</strong>
+          <ul>
+            <li><strong>ST1903018</strong> — Engine Cranking Tool (1453158 also suitable). Mandatory for DAF Dealers / DAF Service Partners.</li>
+            <li><strong>ST2124332</strong> — Adjustment tool, MX-13 valve clearance. Straddles the lost motion shaft for exhaust clearance measurement.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. REMOVE VALVE COVER -->
+    <section class="section" data-idx="1">
+      <div class="card">
+        <h2 class="title">2. Remove Valve Cover Assembly</h2>
+        <ol>
+          <li>Loosen the attachment bolts and remove the valve cover assembly.</li>
+        </ol>
+        <div class="warn"><strong>Always replace the valve cover gasket.</strong> Never reinstall a used gasket.</div>
+
+        <div class="videoblock">
+          <span class="video-label">Demonstration</span>
+          <video controls muted playsinline preload="metadata">
+            <source src="videos/valve_cover_removal_1.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Loosening and removing the valve cover attachment bolts.</div>
+        </div>
+
+        <div class="videoblock">
+          <span class="video-label">Demonstration (cont.)</span>
+          <video controls muted playsinline preload="metadata">
+            <source src="videos/valve_cover_removal_2.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Final bolts removed and cover lifted clear, exposing the rocker assembly.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CHECK VALVE CLEARANCE -->
+    <section class="section" data-idx="2">
+      <div class="card">
+        <h2 class="title">3. Check Valve Clearance</h2>
+
+        <h3>Step 1 — Position the crankshaft</h3>
+        <ol>
+          <li>Use special tool <strong>1903018</strong> to turn the crankshaft <strong>counterclockwise</strong> as seen from the distribution side. This matches the engine's normal direction of rotation.</li>
+          <li>Crank the engine until the vibration damper is on cylinder mark <strong>1/6</strong>. Piston position can also be read on the flywheel.</li>
+        </ol>
+
+        <div class="videoblock">
+          <span class="video-label">Demonstration</span>
+          <video controls muted playsinline preload="metadata">
+            <source src="videos/crank_tool_1.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Turning the crankshaft counterclockwise (distribution side) with the ST1903018 cranking tool.</div>
+        </div>
+        <div class="videoblock">
+          <span class="video-label">Demonstration (cont.)</span>
+          <video controls muted playsinline preload="metadata">
+            <source src="videos/crank_tool_2.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Continued crank rotation, aligning the vibration damper mark.</div>
+        </div>
+
+        <h3>Step 2 — Determine which cylinder to check/adjust</h3>
+        <p>Use the 3-step firing order table below. Column I is the mark showing on the flywheel/vibration damper; Column II is the cylinder whose exhaust valves are open; Column III is the cylinder to actually check/adjust.</p>
+        <table>
+          <tr><th>I — Mark on flywheel &amp; vibration damper</th><th>II — Cylinder with exhaust valves opened</th><th>III — Cylinder to check/adjust</th></tr>
+          <tr><td>1-6</td><td>2</td><td class="tocheck">1</td></tr>
+          <tr><td>2-5</td><td>4</td><td class="tocheck">5</td></tr>
+          <tr><td>3-4</td><td>1</td><td class="tocheck">3</td></tr>
+          <tr><td>1-6</td><td>5</td><td class="tocheck">6</td></tr>
+          <tr><td>2-5</td><td>3</td><td class="tocheck">2</td></tr>
+          <tr><td>3-4</td><td>6</td><td class="tocheck">4</td></tr>
+        </table>
+
+        <div class="info">
+          <strong>New rocker assembly with MX Engine Brake:</strong>
+          <ul>
+            <li>Do <strong>not</strong> check/adjust the exhaust valve clearance between the swivel feet and valve bridge.</li>
+            <li>Exhaust valve clearance must be checked/adjusted according to the table above — <strong>not</strong> at maximum rocker lift.</li>
+            <li>Movement of the inlet valve bridge also indicates which cylinder's valve clearance must be checked.</li>
+          </ul>
+        </div>
+
+        <div class="videoblock">
+          <span class="video-label">Demonstration</span>
+          <video controls muted playsinline preload="metadata">
+            <source src="videos/rocker_overview.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Overview pass across the exposed rocker assembly, all six cylinders.</div>
+        </div>
+
+        <h3>Step 3 — Measure valve clearance</h3>
+        <div class="warn">
+          A valve clearance of more than <strong>1 mm [0.04 in]</strong> indicates mechanical damage or wear in the valve train — especially if found on only one cylinder. Check all valve train parts on that cylinder before adjusting to spec.
+        </div>
+        <p><strong>Intake:</strong> Measure between the Valve Bridge and the Flat Face of the Intake rocker's Ball Socket.</p>
+        <p><strong>Exhaust:</strong> Insert special tool <strong>2124332</strong> between the bottom surface of the rocker and the upper surface of the lost motion shaft's collar. The tool is designed to straddle the shaft.</p>
+        <div class="info">
+          <ul>
+            <li>Insert the tool, then remove it and wipe off any residual oil. Insert it again to take the actual measurement.</li>
+            <li>Residual oil on the lost motion shaft affects the tool's "drag" friction, which will throw off the adjustment.</li>
+          </ul>
+        </div>
+
+        <div class="videoblock">
+          <span class="video-label">Demonstration</span>
+          <video controls muted playsinline preload="metadata">
+            <source src="videos/check_clearance_1.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Measuring clearance with the feeler/adjustment tool, cross-referencing the flywheel mark.</div>
+        </div>
+        <div class="videoblock">
+          <span class="video-label">Demonstration (cont.)</span>
+          <video controls muted playsinline preload="metadata">
+            <source src="videos/check_clearance_2.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Continued clearance checks across additional cylinders in firing order.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ADJUST -->
+    <section class="section" data-idx="3">
+      <div class="card">
+        <h2 class="title">4. Adjust Valve Clearance</h2>
+        <ol>
+          <li>Adjust the valve clearance by loosening the lock nut and turning the adjusting screw in the correct direction.</li>
+          <li>Rotate the crankshaft <strong>1/3 stroke</strong> at a time (special tool 1903018) to move through the remaining cylinders, following the injection sequence <strong>1‑5‑3‑6‑2‑4</strong>.</li>
+        </ol>
+
+        <div class="videoblock">
+          <span class="video-label">Demonstration</span>
+          <video controls muted playsinline preload="metadata">
+            <source src="videos/adjust_clearance.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Loosening the lock nut, turning the adjusting screw to spec, and re-torquing.</div>
+        </div>
+
+        <h3>Adjusting data — valve clearance (cold engine)</h3>
+        <div class="spec-grid">
+          <div class="spec-box"><div class="val">0.50 mm [0.020 in]</div><div class="lbl">Intake clearance</div></div>
+          <div class="spec-box"><div class="val">0.70 mm [0.028 in]</div><div class="lbl">Exhaust clearance</div></div>
+          <div class="spec-box"><div class="val">64 Nm [566 lb-in]</div><div class="lbl">Lock nut, valve adjusting bolt</div></div>
+          <div class="spec-box"><div class="val">&gt;1 mm [0.039 in]</div><div class="lbl">Clearance indicating valve train wear/damage</div></div>
+        </div>
+
+        <h3>Cold vs. warm engine — definitions</h3>
+        <table>
+          <tr><th>Condition</th><th>Definition</th></tr>
+          <tr><td><strong>Cold engine</strong></td><td>Has reached operating temperature, then allowed to cool down for at least <strong>six hours</strong>.</td></tr>
+          <tr><td><strong>Warm engine</strong></td><td>Has reached operating temperature and been at standstill for <strong>no more than thirty minutes</strong>.</td></tr>
+        </table>
+
+        <h3>Rocker arm group — tightening torque</h3>
+        <table>
+          <tr><th>Fastener</th><th>Torque</th></tr>
+          <tr><td>Attachment bolts (1) — Phase 1</td><td>50 Nm [443 lb-in]</td></tr>
+          <tr><td>Attachment bolts (1) — Phase 2</td><td>+90°</td></tr>
+          <tr><td>Lock nut (2)/(3), valve adjusting bolt</td><td>64 Nm [566 lb-in]</td></tr>
+          <tr><td>Attachment bolt (4)</td><td>14 Nm [124 lb-in]</td></tr>
+          <tr><td>Flange bolt, hexagonal head</td><td>75 Nm [55 lb-ft]</td></tr>
+          <tr><td>Dowel bolt, internal hex socket</td><td>65 Nm [575 lb-in]</td></tr>
+        </table>
+        <p class="video-caption">Tighten in the sequence marked on the housing, following the bold reference figures per the service diagram.</p>
+      </div>
+    </section>
+
+    <!-- 5. REINSTALL -->
+    <section class="section" data-idx="4">
+      <div class="card">
+        <h2 class="title">5. Gasket &amp; Valve Cover Reinstall</h2>
+
+        <h3>Mount valve cover gasket</h3>
+        <ol>
+          <li>Clean the sealing surface of the valve train casing and the recess in the valve cover.</li>
+          <li><strong>Always</strong> install a new gasket in the valve cover — make sure the sealing surface and recess are fully dry to prevent leakage.</li>
+        </ol>
+
+        <div class="videoblock">
+          <span class="video-label">Demonstration</span>
+          <video controls muted playsinline preload="metadata">
+            <source src="videos/casing_clean.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Cleaning the valve train casing sealing surface before gasket installation.</div>
+        </div>
+
+        <div class="videoblock">
+          <span class="video-label">Demonstration</span>
+          <video controls muted playsinline preload="metadata">
+            <source src="videos/valve_cover_gasket.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">Seating the new valve cover gasket (part 2105834) into the cover recess.</div>
+        </div>
+
+        <div class="videoblock">
+          <span class="video-label">Demonstration</span>
+          <video controls muted playsinline preload="metadata">
+            <source src="videos/gasket_prep.mp4" type="video/mp4">
+          </video>
+          <div class="video-caption">New gasket staged and rocker assembly prepped ahead of cover reinstall.</div>
+        </div>
+
+        <h3>Install valve cover</h3>
+        <ol>
+          <li>Fit the valve cover complete with the attachment bolts and the new valve cover gasket.</li>
+          <li>Tighten the attachment bolts in the specified sequence to the specified torque.</li>
+        </ol>
+        <table>
+          <tr><th>Fastener</th><th>Torque</th></tr>
+          <tr><td>Valve cover attachment bolts <sup>(1)</sup></td><td>9 Nm [80 lb-in]</td></tr>
+        </table>
+        <p class="video-caption"><sup>(1)</sup> Always install a new valve cover gasket. Follow the numbered tightening sequence on the cover housing.</p>
+
+        <div class="info">
+          <strong>Required part</strong>
+          <ul><li>Valve cover gasket — MPA 2105834, 1 PCE, Component Group 1401 (Basic assembly)</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. QUIZ -->
+    <section class="section" data-idx="5">
+      <div class="card" id="quizCard">
+        <h2 class="title">6. Certification Quiz</h2>
+        <p id="quizIntro">10 questions, randomly selected. You need <strong>80%</strong> (8 correct) to pass and unlock your certificate. You may retake the quiz as many times as needed.</p>
+        <div id="quizArea"></div>
+        <button class="nav" id="submitQuiz" style="margin-top:10px;">Submit Answers</button>
+        <div id="quizResult"></div>
+      </div>
+    </section>
+
+    <!-- 7. CERTIFICATE -->
+    <section class="section" data-idx="6">
+      <div class="card locked" id="certCard">
+        <h2 class="title">7. Completion Certificate</h2>
+        <p>Pass the certification quiz to unlock your printable certificate.</p>
+        <div class="cert" id="certBody" style="display:none;">
+          <h2>Certificate of Completion</h2>
+          <p>Andrews Logistics LP — Preventive Maintenance Training</p>
+          <div class="name" id="certName">Technician Name</div>
+          <p><strong>MX-13 Overhead Valve Clearance Adjustment</strong><br>Refresher &amp; Certification</p>
+          <p id="certDate"></p>
+          <p id="certScore" style="color:var(--green);font-weight:600;"></p>
+        </div>
+        <div id="certForm" style="margin-top:14px;">
+          <input type="text" id="nameInput" placeholder="Type your full name" style="padding:9px 12px;border:1px solid var(--border);border-radius:6px;width:260px;">
+          <button class="nav" id="genCert">Generate Certificate</button>
+        </div>
+        <button class="nav" id="printCert" style="display:none;margin-top:14px;">Print Certificate</button>
+      </div>
+    </section>
+
+    <div class="nav-btns">
+      <button class="nav" id="prevBtn">← Previous</button>
+      <button class="nav" id="nextBtn">Next →</button>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const sections = [
+  "Safety & Setup",
+  "Remove Valve Cover",
+  "Check Clearance",
+  "Adjust Clearance",
+  "Reinstall Cover",
+  "Certification Quiz",
+  "Certificate"
+];
+let current = 0;
+
+const sideNav = document.getElementById('sideNav');
+sections.forEach((label,i)=>{
+  const btn = document.createElement('button');
+  btn.innerHTML = `<span class="num">${i+1}</span>${label}`;
+  btn.addEventListener('click', ()=> goTo(i));
+  sideNav.appendChild(btn);
+});
+
+function goTo(i){
+  current = i;
+  document.querySelectorAll('.section').forEach(s=> s.classList.toggle('active', +s.dataset.idx === i));
+  document.querySelectorAll('nav.side button').forEach((b,idx)=>{
+    b.classList.toggle('active', idx===i);
+  });
+  document.getElementById('progressPill').textContent = `Section ${i+1} of ${sections.length}`;
+  document.getElementById('prevBtn').disabled = i===0;
+  document.getElementById('nextBtn').disabled = i===sections.length-1;
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById('prevBtn').addEventListener('click', ()=> goTo(Math.max(0,current-1)));
+document.getElementById('nextBtn').addEventListener('click', ()=> goTo(Math.min(sections.length-1,current+1)));
+goTo(0);
+
+/* ---------- QUIZ ---------- */
+const pool = [
+  {q:"Before commencing any activity on the vehicle, what must always be removed and secured?", opts:["The battery","The ignition key","The valve cover","The dipstick"], a:1},
+  {q:"When working on a component with direct +30 power supply, what should you disconnect first?", opts:["The alternator plug","The starter relay","The 12V battery ground connection","The ECM harness"], a:2},
+  {q:"What should always be replaced when the valve cover is removed?", opts:["The valve cover gasket","The rocker cover bolts","The oil filter","The crankshaft seal"], a:0},
+  {q:"Which special tool is used to turn the crankshaft, and in which direction (as seen from the distribution side)?", opts:["2124332, clockwise","1903018, counterclockwise","1903018, clockwise","2124332, counterclockwise"], a:1},
+  {q:"You crank the engine until the vibration damper shows mark 2-5, and cylinder 4 has exhaust valves open. Which cylinder do you check/adjust?", opts:["Cylinder 2","Cylinder 4","Cylinder 5","Cylinder 6"], a:2},
+  {q:"On a mark of 1-6 with cylinder 2's exhaust valves open, which cylinder should be checked/adjusted?", opts:["Cylinder 1","Cylinder 6","Cylinder 3","Cylinder 5"], a:0},
+  {q:"On a new rocker assembly with MX Engine Brake, where should you NOT check/adjust exhaust valve clearance?", opts:["At the valve bridge only","Between the swivel feet and valve bridge","At the lost motion shaft collar","At the intake rocker ball socket"], a:1},
+  {q:"A valve clearance measurement of more than what value indicates possible mechanical damage or wear?", opts:["0.5 mm", "0.7 mm", "1 mm [0.04 in]", "2 mm"], a:2},
+  {q:"Intake valve clearance is measured between the valve bridge and which surface?", opts:["The lost motion shaft collar","The flat face of the intake rocker's ball socket","The exhaust manifold flange","The rocker arm bushing"], a:1},
+  {q:"Which special tool is inserted between the bottom surface of the rocker and the top surface of the lost motion shaft collar to measure exhaust clearance?", opts:["1903018","2124332","1453158","2105834"], a:1},
+  {q:"Why must the ST2124332 tool be inserted, removed, wiped, then reinserted before taking a measurement?", opts:["To warm up the tool","Residual oil affects the tool's drag friction, causing an incorrect reading","To check for tool damage","It's only a calibration step, not required"], a:1},
+  {q:"Valve clearance is adjusted by loosening the lock nut and doing what?", opts:["Replacing the rocker arm","Turning the adjusting screw","Retorquing the valve cover","Reseating the valve spring"], a:1},
+  {q:"After adjusting one cylinder, how far do you rotate the crankshaft to move to the next cylinder in the injection sequence?", opts:["1/6 stroke","1/2 stroke","1/3 stroke","Full stroke"], a:2},
+  {q:"What is the injection/adjustment firing sequence for this engine?", opts:["1-2-3-4-5-6","1-5-3-6-2-4","1-3-5-2-4-6","1-6-2-5-3-4"], a:1},
+  {q:"What is the specified cold intake valve clearance?", opts:["0.50 mm [0.020 in]","0.70 mm [0.028 in]","1.00 mm [0.039 in]","0.30 mm [0.012 in]"], a:0},
+  {q:"What is the specified cold exhaust valve clearance?", opts:["0.50 mm [0.020 in]","0.70 mm [0.028 in]","0.90 mm [0.035 in]","1.10 mm [0.043 in]"], a:1},
+  {q:"What torque is applied to the lock nut for the valve adjusting bolt?", opts:["9 Nm","14 Nm","50 Nm","64 Nm [566 lb-in]"], a:3},
+  {q:"How long must an engine sit after reaching operating temperature to be classified as 'cold' for valve adjustment?", opts:["At least 30 minutes","At least 2 hours","At least 6 hours","At least 24 hours"], a:2},
+  {q:"An engine that reached operating temperature and has been at standstill for 20 minutes is classified as:", opts:["Cold","Warm","Neither — must wait longer","Hot"], a:1},
+  {q:"What torque spec applies to the valve cover attachment bolts on final install?", opts:["9 Nm [80 lb-in]","14 Nm [124 lb-in]","50 Nm [443 lb-in]","64 Nm [566 lb-in]"], a:0},
+];
+
+const QUIZ_LEN = 10, PASS_PCT = 0.8;
+let activeQuestions = [];
+let answers = {};
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+function buildQuiz(){
+  answers = {};
+  activeQuestions = shuffle(pool).slice(0,QUIZ_LEN);
+  const area = document.getElementById('quizArea');
+  area.innerHTML = '';
+  document.getElementById('quizResult').innerHTML = '';
+  activeQuestions.forEach((item,qi)=>{
+    const optOrder = shuffle(item.opts.map((text,idx)=>({text,idx})));
+    const block = document.createElement('div');
+    block.className = 'q-block';
+    block.innerHTML = `<div class="q-prompt">${qi+1}. ${item.q}</div>`;
+    optOrder.forEach(o=>{
+      const label = document.createElement('label');
+      label.className = 'opt';
+      label.innerHTML = `<input type="radio" name="q${qi}" value="${o.idx}"> ${o.text}`;
+      label.addEventListener('click', ()=>{
+        block.querySelectorAll('.opt').forEach(el=>el.classList.remove('selected'));
+        label.classList.add('selected');
+        answers[qi] = o.idx;
+      });
+      block.appendChild(label);
+    });
+    area.appendChild(block);
+  });
+}
+buildQuiz();
+
+document.getElementById('submitQuiz').addEventListener('click', ()=>{
+  if(Object.keys(answers).length < activeQuestions.length){
+    alert('Please answer every question before submitting.');
+    return;
+  }
+  let correct = 0;
+  document.querySelectorAll('.q-block').forEach((block,qi)=>{
+    const item = activeQuestions[qi];
+    block.querySelectorAll('.opt').forEach(opt=>{
+      const val = +opt.querySelector('input').value;
+      opt.querySelector('input').disabled = true;
+      if(val === item.a) opt.classList.add('correct');
+      else if(val === answers[qi]) opt.classList.add('incorrect');
+    });
+    if(answers[qi] === item.a) correct++;
+  });
+  const pct = correct/activeQuestions.length;
+  const resultDiv = document.getElementById('quizResult');
+  const passed = pct >= PASS_PCT;
+  resultDiv.innerHTML = `<div class="result-banner ${passed?'pass':'fail'}">
+    You scored ${correct}/${activeQuestions.length} (${Math.round(pct*100)}%) — ${passed?'PASS ✓ Certificate unlocked below.':'Not a pass. Review the material and retake below.'}
+  </div>
+  <button class="nav" id="retakeBtn">Retake Quiz</button>`;
+  document.getElementById('submitQuiz').style.display = 'none';
+  document.getElementById('retakeBtn').addEventListener('click', ()=>{
+    document.getElementById('submitQuiz').style.display = 'inline-block';
+    buildQuiz();
+  });
+  if(passed){
+    window.quizPassed = true;
+    window.quizScore = `${correct}/${activeQuestions.length} (${Math.round(pct*100)}%)`;
+    document.getElementById('certCard').classList.remove('locked');
+  }
+});
+
+/* ---------- CERTIFICATE ---------- */
+document.getElementById('genCert').addEventListener('click', ()=>{
+  if(!window.quizPassed){
+    alert('Pass the certification quiz first (80% or higher).');
+    return;
+  }
+  const name = document.getElementById('nameInput').value.trim();
+  if(!name){ alert('Enter your full name.'); return; }
+  document.getElementById('certName').textContent = name;
+  document.getElementById('certDate').textContent = 'Date completed: ' + new Date().toLocaleDateString();
+  document.getElementById('certScore').textContent = 'Quiz score: ' + window.quizScore;
+  document.getElementById('certBody').style.display = 'block';
+  document.getElementById('printCert').style.display = 'inline-block';
+});
+document.getElementById('printCert').addEventListener('click', ()=> window.print());
+</script>
+</body>
+</html>
