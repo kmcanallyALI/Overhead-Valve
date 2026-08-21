@@ -502,12 +502,15 @@ document.getElementById('submitQuiz').addEventListener('click', ()=>{
   if(passed){
     window.quizPassed = true;
     window.quizScore = `${correct}/${activeQuestions.length} (${Math.round(pct*100)}%)`;
+    window.quizCorrect = correct;
+    window.quizTotal = activeQuestions.length;
+    window.quizPercent = Math.round(pct*100);
     document.getElementById('certCard').classList.remove('locked');
   }
 });
 
 /* ---------- CERTIFICATE ---------- */
-document.getElementById('genCert').addEventListener('click', ()=>{
+document.getElementById('genCert').addEventListener('click', async ()=>{
   if(!window.quizPassed){
     alert('Pass the certification quiz first (80% or higher).');
     return;
@@ -519,6 +522,34 @@ document.getElementById('genCert').addEventListener('click', ()=>{
   document.getElementById('certScore').textContent = 'Quiz score: ' + window.quizScore;
   document.getElementById('certBody').style.display = 'block';
   document.getElementById('printCert').style.display = 'inline-block';
+
+  // Record the attempt server-side (fire-and-forget; don't block the certificate on this)
+  const genBtn = document.getElementById('genCert');
+  const originalLabel = genBtn.textContent;
+  try{
+    genBtn.disabled = true;
+    genBtn.textContent = 'Recording result...';
+    const resp = await fetch('/.netlify/functions/record-result', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        name,
+        correct: window.quizCorrect,
+        total: window.quizTotal,
+        percent: window.quizPercent,
+        passed: true,
+        timestamp: new Date().toISOString()
+      })
+    });
+    if(!resp.ok){
+      console.warn('Result recording failed:', await resp.text());
+    }
+  }catch(err){
+    console.warn('Result recording failed:', err);
+  }finally{
+    genBtn.disabled = false;
+    genBtn.textContent = originalLabel;
+  }
 });
 document.getElementById('printCert').addEventListener('click', ()=> window.print());
 </script>
