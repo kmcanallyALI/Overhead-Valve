@@ -44,6 +44,45 @@
   .videoblock video{width:100%;max-width:720px;border-radius:10px;border:1px solid var(--border);display:block;background:#000;}
   .video-caption{font-size:.85rem;color:var(--muted);margin-top:6px;font-style:italic;}
   .video-label{display:inline-block;background:var(--navy);color:#fff;font-size:.72rem;padding:3px 10px;border-radius:20px;margin-bottom:8px;letter-spacing:.03em;text-transform:uppercase;}
+
+  /* Comic panel */
+  .comic-panel{
+    position:relative;max-width:640px;margin:20px 0;padding:10px;
+    background:
+      radial-gradient(circle, rgba(13,35,64,.10) 1.1px, transparent 1.1px) 0 0/14px 14px,
+      #f8f6ee;
+    border:4px solid #10131a;border-radius:4px;
+    box-shadow:6px 6px 0 rgba(13,35,64,.85);
+    transform:rotate(var(--tilt,-0.4deg));
+  }
+  .comic-panel:nth-of-type(2n){ --tilt:0.5deg; }
+  .comic-panel .frame{
+    position:relative;border:3px solid #10131a;border-radius:2px;overflow:hidden;background:#000;
+  }
+  .comic-panel video{width:100%;display:block;background:#000;filter:contrast(1.08) saturate(1.12);}
+  .comic-badge{
+    position:absolute;top:-14px;left:-14px;width:40px;height:40px;border-radius:50%;
+    background:var(--red);border:3px solid #10131a;color:#fff;font-weight:800;font-size:1.05rem;
+    display:flex;align-items:center;justify-content:center;box-shadow:2px 2px 0 rgba(0,0,0,.6);z-index:2;
+  }
+  .comic-caption{
+    margin-top:10px;background:#fff;border:3px solid #10131a;border-radius:10px;
+    padding:9px 14px;font-family:'Segoe UI',Arial,sans-serif;font-weight:600;font-size:.92rem;
+    color:#10131a;position:relative;
+  }
+  .comic-caption::before{
+    content:"";position:absolute;top:-11px;left:22px;width:0;height:0;
+    border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:11px solid #10131a;
+  }
+  .comic-caption::after{
+    content:"";position:absolute;top:-7px;left:24px;width:0;height:0;
+    border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:9px solid #fff;
+  }
+  .comic-sfx{
+    position:absolute;bottom:8px;right:12px;font-family:Impact,'Arial Black',sans-serif;
+    color:var(--amber);-webkit-text-stroke:1.5px #10131a;font-size:1.3rem;letter-spacing:.02em;
+    transform:rotate(-6deg);z-index:2;pointer-events:none;text-shadow:2px 2px 0 rgba(0,0,0,.4);
+  }
   .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
   .spec-box{background:var(--navy);color:#fff;border-radius:10px;padding:16px 18px;}
   .spec-box .val{font-size:1.5rem;font-weight:700;color:var(--amber);}
@@ -103,12 +142,15 @@
           </ul>
         </div>
 
-        <div class="videoblock">
-          <span class="video-label">Demonstration</span>
-          <video controls muted playsinline poster="" preload="metadata">
-            <source src="videosa/shop_setup.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">Job setup — tools staged, engine compartment accessed and cleaned before starting the procedure. (Audio removed — visual reference only.)</div>
+        <div class="comic-panel">
+          <div class="comic-badge">1</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/setup_panel.mp4" type="video/mp4">
+            </video>
+            <span class="comic-sfx">SET UP!</span>
+          </div>
+          <div class="comic-caption">Tools staged, engine compartment cleaned — ready to start the job.</div>
         </div>
 
         <div class="info">
@@ -130,20 +172,15 @@
         </ol>
         <div class="warn"><strong>Always replace the valve cover gasket.</strong> Never reinstall a used gasket.</div>
 
-        <div class="videoblock">
-          <span class="video-label">Demonstration</span>
-          <video controls muted playsinline preload="metadata">
-            <source src="videosa/valve_cover_removal_1.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">Loosening and removing the valve cover attachment bolts.</div>
-        </div>
-
-        <div class="videoblock">
-          <span class="video-label">Demonstration (cont.)</span>
-          <video controls muted playsinline preload="metadata">
-            <source src="videosa/valve_cover_removal_2.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">Final bolts removed and cover lifted clear, exposing the rocker assembly.</div>
+        <div class="comic-panel">
+          <div class="comic-badge">2</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/remove_cover_panel.mp4" type="video/mp4">
+            </video>
+            <span class="comic-sfx">UNBOLT!</span>
+          </div>
+          <div class="comic-caption">Loosening the valve cover attachment bolts to lift the cover clear.</div>
         </div>
       </div>
     </section>
@@ -159,19 +196,15 @@
           <li>Crank the engine until the vibration damper is on cylinder mark <strong>1/6</strong>. Piston position can also be read on the flywheel.</li>
         </ol>
 
-        <div class="videoblock">
-          <span class="video-label">Demonstration</span>
-          <video controls muted playsinline preload="metadata">
-            <source src="videosa/crank_tool_1.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">Turning the crankshaft counterclockwise (distribution side) with the ST1903018 cranking tool.</div>
-        </div>
-        <div class="videoblock">
-          <span class="video-label">Demonstration (cont.)</span>
-          <video controls muted playsinline preload="metadata">
-            <source src="videosa/crank_tool_2.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">Continued crank rotation, aligning the vibration damper mark.</div>
+        <div class="comic-panel">
+          <div class="comic-badge">3</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/crank_panel.mp4" type="video/mp4">
+            </video>
+            <span class="comic-sfx">CRANK!</span>
+          </div>
+          <div class="comic-caption">Turning the crankshaft with the ST1903018 tool to align the flywheel mark.</div>
         </div>
 
         <h3>Step 2 — Determine which cylinder to check/adjust</h3>
@@ -195,12 +228,14 @@
           </ul>
         </div>
 
-        <div class="videoblock">
-          <span class="video-label">Demonstration</span>
-          <video controls muted playsinline preload="metadata">
-            <source src="videosa/rocker_overview.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">Overview pass across the exposed rocker assembly, all six cylinders.</div>
+        <div class="comic-panel">
+          <div class="comic-badge">4</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/overview_panel.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="comic-caption">Wide pass across the exposed rocker assembly — all six cylinders visible.</div>
         </div>
 
         <h3>Step 3 — Measure valve clearance</h3>
@@ -216,19 +251,15 @@
           </ul>
         </div>
 
-        <div class="videoblock">
-          <span class="video-label">Demonstration</span>
-          <video controls muted playsinline preload="metadata">
-            <source src="videosa/check_clearance_1.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">Measuring clearance with the feeler/adjustment tool, cross-referencing the flywheel mark.</div>
-        </div>
-        <div class="videoblock">
-          <span class="video-label">Demonstration (cont.)</span>
-          <video controls muted playsinline preload="metadata">
-            <source src="videosa/check_clearance_2.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">Continued clearance checks across additional cylinders in firing order.</div>
+        <div class="comic-panel">
+          <div class="comic-badge">5</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/check_panel.mp4" type="video/mp4">
+            </video>
+            <span class="comic-sfx">SLIDE...</span>
+          </div>
+          <div class="comic-caption">Inserting the ST2124332 tool and sliding it to feel clearance at the lost motion shaft collar.</div>
         </div>
       </div>
     </section>
@@ -242,12 +273,15 @@
           <li>Rotate the crankshaft <strong>1/3 stroke</strong> at a time (special tool 1903018) to move through the remaining cylinders, following the injection sequence <strong>1‑5‑3‑6‑2‑4</strong>.</li>
         </ol>
 
-        <div class="videoblock">
-          <span class="video-label">Demonstration</span>
-          <video controls muted playsinline preload="metadata">
-            <source src="videosa/adjust_clearance.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">Loosening the lock nut, turning the adjusting screw to spec, and re-torquing.</div>
+        <div class="comic-panel">
+          <div class="comic-badge">6</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/adjust_panel.mp4" type="video/mp4">
+            </video>
+            <span class="comic-sfx">TURN!</span>
+          </div>
+          <div class="comic-caption">Loosening the lock nut and turning the adjusting screw to bring clearance to spec.</div>
         </div>
 
         <h3>Adjusting data — valve clearance (cold engine)</h3>
@@ -290,28 +324,36 @@
           <li><strong>Always</strong> install a new gasket in the valve cover — make sure the sealing surface and recess are fully dry to prevent leakage.</li>
         </ol>
 
-        <div class="videoblock">
-          <span class="video-label">Demonstration</span>
-          <video controls muted playsinline preload="metadata">
-            <source src="videosa/casing_clean.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">Cleaning the valve train casing sealing surface before gasket installation.</div>
+        <div class="comic-panel">
+          <div class="comic-badge">7</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/clean_panel.mp4" type="video/mp4">
+            </video>
+            <span class="comic-sfx">WIPE!</span>
+          </div>
+          <div class="comic-caption">Cleaning the old gasket channel and sealing surface before fitting the new one.</div>
         </div>
 
-        <div class="videoblock">
-          <span class="video-label">Demonstration</span>
-          <video controls muted playsinline preload="metadata">
-            <source src="videosa/valve_cover_gasket.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">Seating the new valve cover gasket (part 2105834) into the cover recess.</div>
+        <div class="comic-panel">
+          <div class="comic-badge">8</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/gasket_panel.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="comic-caption">Pressing the new gasket (part 2105834) into the cover recess.</div>
         </div>
 
-        <div class="videoblock">
-          <span class="video-label">Demonstration</span>
-          <video controls muted playsinline preload="metadata">
-            <source src="videosa/gasket_prep.mp4" type="video/mp4">
-          </video>
-          <div class="video-caption">New gasket staged and rocker assembly prepped ahead of cover reinstall.</div>
+        <div class="comic-panel">
+          <div class="comic-badge">9</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/install_panel.mp4" type="video/mp4">
+            </video>
+            <span class="comic-sfx">SEATED!</span>
+          </div>
+          <div class="comic-caption">Cover fitted with the new gasket, ready to bolt down in torque sequence.</div>
         </div>
 
         <h3>Install valve cover</h3>
