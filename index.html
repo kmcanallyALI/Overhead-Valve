@@ -83,6 +83,19 @@
     color:var(--amber);-webkit-text-stroke:1.5px #10131a;font-size:1.3rem;letter-spacing:.02em;
     transform:rotate(-6deg);z-index:2;pointer-events:none;text-shadow:2px 2px 0 rgba(0,0,0,.4);
   }
+  .storyboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px 18px;margin-top:18px;}
+  .storyboard-grid .comic-panel{max-width:none;margin:0;}
+  .storyboard-grid .frame img{width:100%;display:block;}
+  @media(max-width:900px){.storyboard-grid{grid-template-columns:1fr;}}
+
+  .field-note{
+    background:#fdf6e8;border:1px solid #e8d5a8;border-left:5px solid var(--amber);
+    border-radius:8px;padding:16px 20px;margin:18px 0;font-size:.93rem;
+  }
+  .field-note .fn-label{display:block;font-weight:700;color:#8a5a00;text-transform:uppercase;
+    letter-spacing:.04em;font-size:.75rem;margin-bottom:8px;}
+  .field-note p{margin:0 0 8px;}
+  .field-note p:last-child{margin-bottom:0;}
   .spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
   .spec-box{background:var(--navy);color:#fff;border-radius:10px;padding:16px 18px;}
   .spec-box .val{font-size:1.5rem;font-weight:700;color:var(--amber);}
@@ -166,9 +179,9 @@
     <!-- 2. REMOVE VALVE COVER -->
     <section class="section" data-idx="1">
       <div class="card">
-        <h2 class="title">2. Remove Valve Cover Assembly</h2>
+        <h2 class="title">2. Remove Valve Train Casing</h2>
         <ol>
-          <li>Loosen the attachment bolts and remove the valve cover assembly.</li>
+          <li>Loosen the attachment bolts and remove the valve train casing to expose the rocker assembly.</li>
         </ol>
         <div class="warn"><strong>Always replace the valve cover gasket.</strong> Never reinstall a used gasket.</div>
 
@@ -176,11 +189,11 @@
           <div class="comic-badge">2</div>
           <div class="frame">
             <video controls muted playsinline preload="metadata">
-              <source src="videosa/remove_cover_panel.mp4" type="video/mp4">
+              <source src="videosa/casing_removal.mp4" type="video/mp4">
             </video>
             <span class="comic-sfx">UNBOLT!</span>
           </div>
-          <div class="comic-caption">Loosening the valve cover attachment bolts to lift the cover clear.</div>
+          <div class="comic-caption">Removing the valve train casing to expose the rocker assembly underneath.</div>
         </div>
       </div>
     </section>
@@ -200,11 +213,11 @@
           <div class="comic-badge">3</div>
           <div class="frame">
             <video controls muted playsinline preload="metadata">
-              <source src="videosa/crank_panel.mp4" type="video/mp4">
+              <source src="videosa/turning_tool_cover.mp4" type="video/mp4">
             </video>
             <span class="comic-sfx">CRANK!</span>
           </div>
-          <div class="comic-caption">Turning the crankshaft with the ST1903018 tool to align the flywheel mark.</div>
+          <div class="comic-caption">Removing the cover for the turning tool and rotating the engine to cylinder 1.</div>
         </div>
 
         <h3>Step 2 — Determine which cylinder to check/adjust</h3>
@@ -238,6 +251,18 @@
           <div class="comic-caption">Wide pass across the exposed rocker assembly — all six cylinders visible.</div>
         </div>
 
+        <h3>Step 2.5 — Prep for the first adjustment</h3>
+        <p>Place your tools within reach and confirm you've correctly identified the valve to start with before measuring.</p>
+        <div class="comic-panel">
+          <div class="comic-badge">5</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/prep_first_adjust.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="comic-caption">Placing tools and identifying the correct valve on cylinder 1 before starting.</div>
+        </div>
+
         <h3>Step 3 — Measure valve clearance</h3>
         <div class="warn">
           A valve clearance of more than <strong>1 mm [0.04 in]</strong> indicates mechanical damage or wear in the valve train — especially if found on only one cylinder. Check all valve train parts on that cylinder before adjusting to spec.
@@ -252,14 +277,30 @@
         </div>
 
         <div class="comic-panel">
-          <div class="comic-badge">5</div>
+          <div class="comic-badge">6</div>
           <div class="frame">
             <video controls muted playsinline preload="metadata">
-              <source src="videosa/check_panel.mp4" type="video/mp4">
+              <source src="videosa/check_cyl1.mp4" type="video/mp4">
             </video>
             <span class="comic-sfx">SLIDE...</span>
           </div>
-          <div class="comic-caption">Inserting the ST2124332 tool and sliding it to feel clearance at the lost motion shaft collar.</div>
+          <div class="comic-caption">Checking valve clearance on cylinder 1, the first identified valve.</div>
+        </div>
+
+        <div class="field-note">
+          <span class="fn-label">Field note — why the feel matters</span>
+          <p>A feeler gauge spec is a nominal value — the middle of an acceptable range, not one exact number. A slight drag going in is normal. A little loose is fine as long as it's not floppy; a little snug is fine as long as it still fits.</p>
+          <p>If anything, lean slightly loose rather than tight — clearances tend to tighten up as the engine runs. This matters even more with exhaust brakes: running clearance too tight has led to real valve bridge failures (a shop in Dallas had a cylinder 1 valve bridge drop and take out the head when this was set too tight).</p>
+        </div>
+
+        <div class="comic-panel">
+          <div class="comic-badge">7</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/exhaust_gauge_position.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="comic-caption">Proper feeler gauge placement for the exhaust side measurement.</div>
         </div>
       </div>
     </section>
@@ -274,7 +315,7 @@
         </ol>
 
         <div class="comic-panel">
-          <div class="comic-badge">6</div>
+          <div class="comic-badge">8</div>
           <div class="frame">
             <video controls muted playsinline preload="metadata">
               <source src="videosa/adjust_panel.mp4" type="video/mp4">
@@ -282,6 +323,22 @@
             <span class="comic-sfx">TURN!</span>
           </div>
           <div class="comic-caption">Loosening the lock nut and turning the adjusting screw to bring clearance to spec.</div>
+        </div>
+
+        <h3>Moving to the next cylinder</h3>
+        <div class="comic-panel">
+          <div class="comic-badge">9</div>
+          <div class="frame">
+            <video controls muted playsinline preload="metadata">
+              <source src="videosa/firing_order_visual.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="comic-caption">Working the firing order to identify the next cylinder in sequence.</div>
+        </div>
+
+        <div class="field-note">
+          <span class="fn-label">Field note — working the firing order live</span>
+          <p>Firing order is 1‑5‑3‑6‑2‑4. After finishing cylinder 5, the next cylinder is 3 — not 6. It's easy to lose track mid-job; write the sequence down until it's second nature, then move to checking the intake measurement on the next cylinder.</p>
         </div>
 
         <h3>Adjusting data — valve clearance (cold engine)</h3>
@@ -325,7 +382,7 @@
         </ol>
 
         <div class="comic-panel">
-          <div class="comic-badge">7</div>
+          <div class="comic-badge">10</div>
           <div class="frame">
             <video controls muted playsinline preload="metadata">
               <source src="videosa/clean_panel.mp4" type="video/mp4">
@@ -336,7 +393,7 @@
         </div>
 
         <div class="comic-panel">
-          <div class="comic-badge">8</div>
+          <div class="comic-badge">11</div>
           <div class="frame">
             <video controls muted playsinline preload="metadata">
               <source src="videosa/gasket_panel.mp4" type="video/mp4">
@@ -346,7 +403,7 @@
         </div>
 
         <div class="comic-panel">
-          <div class="comic-badge">9</div>
+          <div class="comic-badge">12</div>
           <div class="frame">
             <video controls muted playsinline preload="metadata">
               <source src="videosa/install_panel.mp4" type="video/mp4">
@@ -374,10 +431,81 @@
       </div>
     </section>
 
-    <!-- 6. QUIZ -->
+    <!-- 6. STORYBOARD -->
     <section class="section" data-idx="5">
+      <div class="card">
+        <h2 class="title">6. Procedure Storyboard</h2>
+        <p>The full job, panel by panel — a quick recap of every step covered in this module, front to back, straight from the shop floor.</p>
+        <div class="storyboard-grid">
+
+          <div class="comic-panel"><div class="comic-badge">1</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/setup_panel.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">Key removed, engine secured, tools staged.</div>
+          </div>
+
+          <div class="comic-panel"><div class="comic-badge">2</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/casing_removal.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">Valve train casing unbolted and lifted clear.</div>
+          </div>
+
+          <div class="comic-panel"><div class="comic-badge">3</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/turning_tool_cover.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">Turning-tool cover removed, engine rotated to cylinder 1.</div>
+          </div>
+
+          <div class="comic-panel"><div class="comic-badge">4</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/overview_panel.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">All six cylinders identified against the firing-order table.</div>
+          </div>
+
+          <div class="comic-panel"><div class="comic-badge">5</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/prep_first_adjust.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">Tools placed, correct valve on cylinder 1 identified.</div>
+          </div>
+
+          <div class="comic-panel"><div class="comic-badge">6</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/check_cyl1.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">Clearance checked on cylinder 1 against spec.</div>
+          </div>
+
+          <div class="comic-panel"><div class="comic-badge">7</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/exhaust_gauge_position.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">Exhaust feeler gauge positioned at the lost motion shaft collar — 0.70mm.</div>
+          </div>
+
+          <div class="comic-panel"><div class="comic-badge">8</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/adjust_panel.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">Lock nut loosened, adjusting screw turned to spec.</div>
+          </div>
+
+          <div class="comic-panel"><div class="comic-badge">9</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/firing_order_visual.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">Firing order (1-5-3-6-2-4) worked to find the next cylinder.</div>
+          </div>
+
+          <div class="comic-panel"><div class="comic-badge">10</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/clean_panel.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">Sealing surface cleaned and dried before the new gasket goes in.</div>
+          </div>
+
+          <div class="comic-panel"><div class="comic-badge">11</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/gasket_panel.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">New gasket (2105834) seated in the cover recess.</div>
+          </div>
+
+          <div class="comic-panel"><div class="comic-badge">12</div>
+            <div class="frame"><video controls muted playsinline preload="metadata"><source src="videosa/install_panel.mp4" type="video/mp4"></video></div>
+            <div class="comic-caption">Cover lowered into place and torqued in sequence — job complete.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. QUIZ -->
+    <section class="section" data-idx="6">
       <div class="card" id="quizCard">
-        <h2 class="title">6. Certification Quiz</h2>
+        <h2 class="title">7. Certification Quiz</h2>
         <p id="quizIntro">10 questions, randomly selected. You need <strong>80%</strong> (8 correct) to pass and unlock your certificate. You may retake the quiz as many times as needed.</p>
         <div id="quizArea"></div>
         <button class="nav" id="submitQuiz" style="margin-top:10px;">Submit Answers</button>
@@ -385,10 +513,10 @@
       </div>
     </section>
 
-    <!-- 7. CERTIFICATE -->
-    <section class="section" data-idx="6">
+    <!-- 8. CERTIFICATE -->
+    <section class="section" data-idx="7">
       <div class="card locked" id="certCard">
-        <h2 class="title">7. Completion Certificate</h2>
+        <h2 class="title">8. Completion Certificate</h2>
         <p>Pass the certification quiz to unlock your printable certificate.</p>
         <div class="cert" id="certBody" style="display:none;">
           <h2>Certificate of Completion</h2>
@@ -421,6 +549,7 @@ const sections = [
   "Check Clearance",
   "Adjust Clearance",
   "Reinstall Cover",
+  "Storyboard",
   "Certification Quiz",
   "Certificate"
 ];
